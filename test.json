@@ -1,0 +1,41 @@
+{ } -> obiekt
+
+[ ] -> kolekcja/tablica
+
+"abc":"xyz" -> pole o nazwie abc i wartości xyz
+
+
+Customer("Adam","Kowalski")
+
+{
+  "imie":"Adam",
+  "nazwisko":"Kowalski"
+}
+
+new String[] s = {"A", "B", "C"};
+
+[
+        "A",
+        "B",
+        "C"
+]
+
+{
+  "customers": [
+      {
+              "firstName":"Adam",
+              "lastName":"Kowalski"
+      },
+      {
+        "firstName":"Adam",
+        "lastName":"Kowalski"
+      }
+  ]
+}
+
+
+{
+        "1":"abc",
+        "2":"cde",
+        "3":"xyz"
+}
