@@ -53,7 +53,12 @@ public class Json {
 			List<Point> pointsListFromFile = objectMapper.readValue(new File("pointsList.json"), List.class);
 
 			// UWAGA
-			// 1.
+			// 1. musimy mieć gettery i settery
+			// 2. musimy mieć konstruktor bezparametrowy
+
+			// 1. Stworzyć klasę odwzorowującą poniższego JSONA
+//		Customer/Person
+			String jsonString = "{\"firstName\":\"Adam\",\"lastName\":\"Kowalski\",\"birthYear\":1980,\"idNumber\":\"ABC\"}";
 
 		}
 	}
