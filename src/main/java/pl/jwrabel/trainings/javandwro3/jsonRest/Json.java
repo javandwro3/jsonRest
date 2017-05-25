@@ -60,6 +60,11 @@ public class Json {
 //		Customer/Person
 			String jsonString = "{\"firstName\":\"Adam\",\"lastName\":\"Kowalski\",\"birthYear\":1980,\"idNumber\":\"ABC\"}";
 
+			// zamiana ze Stringa
+			Customer customer = objectMapper.readValue(jsonString, Customer.class);
+//			Customer customer = objectMapper.readValue(new File("customer.json"), Customer.class);
+			System.out.println("--- przeczytany customer ---");
+			System.out.println(customer);
 		}
 	}
 }
