@@ -3,6 +3,7 @@ package pl.jwrabel.trainings.javandwro3.jsonRest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -65,6 +66,9 @@ public class Json {
 //			Customer customer = objectMapper.readValue(new File("customer.json"), Customer.class);
 			System.out.println("--- przeczytany customer ---");
 			System.out.println(customer);
+
+			// zamiasna JSONa na listę obiektów klasy punkt
+			List<Point> list = objectMapper.readValue(new File("pointsList.json"), TypeFactory.defaultInstance().constructCollectionType(List.class, Point.class));
 		}
 	}
 }
