@@ -7,6 +7,7 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.UUID;
 
 /**
@@ -77,34 +78,34 @@ public class UnirestTest {
 
 		// Pobranie jednego klienta (o ID string) i automatyczna zamiana
 		// odpowiedzi serwera (JSONa z klientem) na obiekt klasy Customer
-		Customer returnedCustomer = Unirest.get("http://195.181.209.160:8080/api/v1/customers/string").asObject(Customer.class).getBody();
+		Customer returnedCustomer = getCustomer("67");
 		System.out.println(returnedCustomer);
-//
-//		// Pobranie wszystkich klientów i automatyczna zamiana
-//		// odpowiedzi serwera (JSONa z kolekcją klientów) na tablicę obiektów klasy Customer
-//		Customer[] customersArray = Unirest.get("http://195.181.209.160:8080/api/v1/customers").asObject(Customer[].class).getBody();
-//		for (Customer customer : customersArray) {
-//			System.out.println(customer);
-//		}
-//		// lub
-////		Arrays.stream(customersArray).forEach(customer -> System.out.println(customer));
-//
-//		// Utworzenie i wysłanie POSTem nowego klienta do serwera (Tworzenie klienta)
-//		Customer customer = new Customer();
-//		customer.setBirthYear("1799");
-//		customer.setHeight(1.89);
-//		customer.setFirstName("Piotr");
-//		customer.setLastName("Kowalski");
-//		customer.setId(UUID.randomUUID().toString());
-//
-//		String postResponse = Unirest
-//				.post("http://195.181.209.160:8080/api/v1/customers")
-//				.header("Content-Type", "application/json")
-//				.body(customer).asString().getBody();
-//		System.out.println(postResponse);
-//
-//
-//		// Wyciąganie elementów jsona z użyciem JsonNode -> chodzenie po JSONie bez konieczności mapowania na obiekty
+
+		// Pobranie wszystkich klientów i automatyczna zamiana
+		// odpowiedzi serwera (JSONa z kolekcją klientów) na tablicę obiektów klasy Customer
+		Customer[] customersArray = Unirest.get("http://195.181.209.160:8080/api/v1/customers").asObject(Customer[].class).getBody();
+		for (Customer customer : customersArray) {
+			System.out.println(customer);
+		}
+		// lub
+		Arrays.stream(customersArray).forEach(customer -> System.out.println(customer));
+
+		// Utworzenie i wysłanie POSTem nowego klienta do serwera (Tworzenie klienta)
+		Customer customer = new Customer();
+		customer.setBirthYear("1799");
+		customer.setHeight(1.89);
+		customer.setFirstName("Piotr");
+		customer.setLastName("Kowalski");
+		customer.setId(UUID.randomUUID().toString());
+
+		String postResponse = Unirest
+				.post("http://195.181.209.160:8080/api/v1/customers")
+				.header("Content-Type", "application/json")
+				.body(customer).asString().getBody();
+		System.out.println(postResponse);
+
+
+		//		// Wyciąganie elementów jsona z użyciem JsonNode -> chodzenie po JSONie bez konieczności mapowania na obiekty
 //		// http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=a1fb2306e8575f67c23fc8f23062f7e1
 //		JsonNode weatherJson = Unirest.get("http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=a1fb2306e8575f67c23fc8f23062f7e1").asJson().getBody();
 //
@@ -113,5 +114,10 @@ public class UnirestTest {
 //
 //		String description = weatherJson.getObject().optJSONArray("weather").optJSONObject(0).getString("description");
 //		System.out.println(description);
+	}
+
+	private static Customer getCustomer(String id) throws UnirestException {
+		return Unirest.get("http://195.181.209.160:8080/api/v1/customers/" + id)
+				.asObject(Customer.class).getBody();
 	}
 }
