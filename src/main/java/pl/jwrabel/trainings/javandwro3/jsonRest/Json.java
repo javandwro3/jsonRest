@@ -67,8 +67,10 @@ public class Json {
 			System.out.println("--- przeczytany customer ---");
 			System.out.println(customer);
 
-			// zamiasna JSONa na listę obiektów klasy punkt
-			List<Point> list = objectMapper.readValue(new File("pointsList.json"), TypeFactory.defaultInstance().constructCollectionType(List.class, Point.class));
+
+//			// zamiasna JSONa na listę obiektów klasy Point
+			List<Point> list = objectMapper.readValue(new File("pointsList.json"),
+					TypeFactory.defaultInstance().constructCollectionType(List.class, Point.class));
 		}
 	}
 }
