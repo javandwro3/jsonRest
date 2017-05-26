@@ -1,10 +1,14 @@
 package pl.jwrabel.trainings.javandwro3.jsonRest;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Created by jakubwrabel on 25/05/2017.
  */
 public class Customer {
+	@JsonProperty("imie")
 	private String firstName;
+	@JsonProperty("nazwisko")
 	private String lastName;
 	private int birthYear;
 	private String idNumber;

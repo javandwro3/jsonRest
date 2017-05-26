@@ -1,6 +1,7 @@
 package pl.jwrabel.trainings.javandwro3.jsonRest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.type.TypeFactory;
@@ -59,7 +60,7 @@ public class Json {
 
 			// 1. Stworzyć klasę odwzorowującą poniższego JSONA
 //		Customer/Person
-			String jsonString = "{\"firstName\":\"Adam\",\"lastName\":\"Kowalski\",\"birthYear\":1980,\"idNumber\":\"ABC\"}";
+			String jsonString = "{\"imie\":\"Adam\",\"nazwisko\":\"Kowalski\",\"birthYear\":1980,\"idNumber\":\"ABC\"}";
 
 			// zamiana ze Stringa
 			Customer customer = objectMapper.readValue(jsonString, Customer.class);
@@ -67,10 +68,29 @@ public class Json {
 			System.out.println("--- przeczytany customer ---");
 			System.out.println(customer);
 
-
 //			// zamiasna JSONa na listę obiektów klasy Point
 			List<Point> list = objectMapper.readValue(new File("pointsList.json"),
 					TypeFactory.defaultInstance().constructCollectionType(List.class, Point.class));
+
+
+			// zamiana JSONa place.json na obiekt klasy Place
+			Place place = objectMapper.readValue(new File("place.json"), Place.class);
+			System.out.println(place);
+
+			// ustawienie objectMapperowi zachowania - ignoruj nieznane
+			objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+			Weather weather = objectMapper.readValue(new File("weather.json"), Weather.class);
+			System.out.println(weather);
+
+			// mapowanie na pole o innej nazwie
+			// adnotacja nad polem @JsonProperty(value = "date_a")
+
+			Customer customer1 = new Customer();
+			customer1.setLastName("Kowalski");
+			customer1.setFirstName("Adam");
+			String customerAsJson = objectMapper.writeValueAsString(customer1);
+			System.out.println(customerAsJson);
+
 		}
 	}
 }
