@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -91,6 +92,23 @@ public class Json {
 			String customerAsJson = objectMapper.writeValueAsString(customer1);
 			System.out.println(customerAsJson);
 
+
+			// ignorowanie nieznanych pól tylko dla jednej klasy
+			// adnotacja nad klasą
+			//	@JsonIgnoreProperties(ignoreUnknown = true)
+
+			// ignorowanie pola przy zamianie na JSON
+			// adnotacja nad polem
+			//		@JsonIgnore
+
+
+			// format daty
+//		@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm a z")
+//		private Date date;
+
+			Person person = new Person("Jan B", new Date());
+			String personAsJson = objectMapper.writeValueAsString(person);
+			System.out.println(personAsJson);
 		}
 	}
 }

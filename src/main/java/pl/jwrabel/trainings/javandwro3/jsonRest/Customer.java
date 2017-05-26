@@ -1,5 +1,6 @@
 package pl.jwrabel.trainings.javandwro3.jsonRest;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -11,6 +12,7 @@ public class Customer {
 	@JsonProperty("nazwisko")
 	private String lastName;
 	private int birthYear;
+	@JsonIgnore
 	private String idNumber;
 
 	public String getFirstName() {

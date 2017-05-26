@@ -1,8 +1,11 @@
 package pl.jwrabel.trainings.javandwro3.jsonRest;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Created by jakubwrabel on 26/05/2017.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Weather {
 	private String name;
 	private String id;
