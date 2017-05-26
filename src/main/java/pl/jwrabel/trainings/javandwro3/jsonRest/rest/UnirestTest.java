@@ -74,11 +74,11 @@ public class UnirestTest {
 				}
 			}
 		});
-//
-//		// Pobranie jednego klienta (o ID string) i automatyczna zamiana
-//		// odpowiedzi serwera (JSONa z klientem) na obiekt klasy Customer
-//		Customer returnedCustomer = Unirest.get("http://195.181.209.160:8080/api/v1/customers/string").asObject(Customer.class).getBody();
-//		System.out.println(returnedCustomer);
+
+		// Pobranie jednego klienta (o ID string) i automatyczna zamiana
+		// odpowiedzi serwera (JSONa z klientem) na obiekt klasy Customer
+		Customer returnedCustomer = Unirest.get("http://195.181.209.160:8080/api/v1/customers/string").asObject(Customer.class).getBody();
+		System.out.println(returnedCustomer);
 //
 //		// Pobranie wszystkich klientów i automatyczna zamiana
 //		// odpowiedzi serwera (JSONa z kolekcją klientów) na tablicę obiektów klasy Customer
