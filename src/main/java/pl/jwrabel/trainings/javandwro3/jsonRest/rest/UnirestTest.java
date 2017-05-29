@@ -2,10 +2,7 @@ package pl.jwrabel.trainings.javandwro3.jsonRest.rest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.ObjectMapper;
-import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.*;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import pl.jwrabel.trainings.javandwro3.jsonRest.Point;
 
@@ -51,7 +48,7 @@ public class UnirestTest {
 		// Wyciągnięcie więcej informacji z odpowiedzi
 		HttpResponse<String> stringHttpResponse = Unirest.get("http://195.181.209.160:8080/hisdas").asString();
 		int status = stringHttpResponse.getStatus();
-		if(status != 200){
+		if (status != 200) {
 			System.err.println("BŁĄD");
 		}
 
@@ -137,6 +134,12 @@ public class UnirestTest {
 		for (Customer customer1 : allCustomersList) {
 			System.out.println(customer1);
 		}
+
+		// Wyciągnięcie wszystkich informacji z odpowiedzi serwera
+		HttpResponse<String> response = Unirest.get("http://195.181.209.160:8080/api/v1/customers").asString();
+		String json = response.getBody();
+		int responseStatus = response.getStatus();
+		Headers headers = response.getHeaders();
 
 
 		//		// Wyciąganie elementów jsona z użyciem JsonNode -> chodzenie po JSONie bez konieczności mapowania na obiekty

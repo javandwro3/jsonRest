@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.type.TypeFactory;
+import com.mashape.unirest.http.Headers;
+import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
@@ -16,7 +18,7 @@ import java.util.Scanner;
  * Created by jakubwrabel on 29/05/2017.
  */
 public class ServerClient {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws UnirestException, IOException {
 		setupUnirest();
 
 		while (true) {
