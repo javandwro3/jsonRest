@@ -78,7 +78,7 @@ public class UnirestTest {
 
 		// Pobranie jednego klienta (o ID string) i automatyczna zamiana
 		// odpowiedzi serwera (JSONa z klientem) na obiekt klasy Customer
-		Customer returnedCustomer = getCustomer("67");
+		Customer returnedCustomer = getCustomer("cfae8f41-e4f1-40a7-8598-db8430908111");
 		System.out.println(returnedCustomer);
 
 		// Pobranie wszystkich klientów i automatyczna zamiana
