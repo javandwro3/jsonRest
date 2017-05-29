@@ -105,7 +105,9 @@ public class UnirestTest {
 		String postResponse = Unirest
 				.post("http://195.181.209.160:8080/api/v1/customers")
 				.header("Content-Type", "application/json")
-				.body(customer).asString().getBody();
+				.body(customer)
+				.asString()
+				.getBody();
 		System.out.println(postResponse);
 
 
