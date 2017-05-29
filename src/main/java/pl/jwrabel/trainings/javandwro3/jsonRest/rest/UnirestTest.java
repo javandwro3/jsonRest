@@ -1,20 +1,24 @@
 package pl.jwrabel.trainings.javandwro3.jsonRest.rest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import pl.jwrabel.trainings.javandwro3.jsonRest.Point;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 /**
  * Created by jakubwrabel on 23.03.2017.
  */
 public class UnirestTest {
-	public static void main(String[] args) throws UnirestException {
+	public static void main(String[] args) throws UnirestException, IOException {
 		// CRUD -> określenie funkcjonalności Create, Retrieve, Update, Delete
 
 		// 2 sposoby przekazywania parametrów
@@ -103,6 +107,18 @@ public class UnirestTest {
 				.header("Content-Type", "application/json")
 				.body(customer).asString().getBody();
 		System.out.println(postResponse);
+
+
+		// Pobranie wszystkich klientów i zamienienie na listę obiektów klasy Customer
+		String allCustomersJson = Unirest.get("http://195.181.209.160:8080/api/v1/customers").asString().getBody();
+
+		com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+		List<Customer> allCustomersList = objectMapper.readValue(allCustomersJson,
+				TypeFactory.defaultInstance().constructCollectionType(List.class, Customer.class));
+
+		for (Customer customer1 : allCustomersList) {
+			System.out.println(customer1);
+		}
 
 
 		//		// Wyciąganie elementów jsona z użyciem JsonNode -> chodzenie po JSONie bez konieczności mapowania na obiekty
