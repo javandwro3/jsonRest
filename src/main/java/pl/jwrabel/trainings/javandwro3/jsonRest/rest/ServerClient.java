@@ -4,8 +4,6 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-import com.mashape.unirest.http.Headers;
-import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
@@ -13,11 +11,15 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.UUID;
 
 /**
  * Created by jakubwrabel on 29/05/2017.
  */
 public class ServerClient {
+
+	public static final Scanner SCANNER = new Scanner(System.in);
+
 	public static void main(String[] args) throws UnirestException, IOException {
 		setupUnirest();
 
@@ -42,11 +44,46 @@ public class ServerClient {
 				case "2":
 					findCustomerById();
 					break;
+				case "3":
+					createCustomer();
+					break;
 				default:
 					System.out.println("Niepoprawny kod operacji");
 
 			}
 		}
+	}
+
+	private static void createCustomer() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Podaj imię: ");
+		String firstName = SCANNER.nextLine();
+		System.out.println("Podaj nazwisko: ");
+		String lastName = scanner.nextLine();
+		System.out.println("Podaj datę urodzenia: ");
+		String birthYear = scanner.nextLine();
+		System.out.println("Podaj wzrost (w cm): ");
+		Double height = scanner.nextDouble();
+
+		Customer customer = new Customer();
+		customer.setFirstName(firstName);
+		customer.setLastName(lastName);
+		customer.setBirthYear(birthYear);
+		customer.setHeight(height);
+		customer.setId(UUID.randomUUID().toString());
+
+		String response = null;
+		try {
+			response = Unirest.post("http://195.181.209.160:8080/api/v1/customers")
+					.header("Content-Type", "application/json")
+					.body(customer)
+					.asString().getBody();
+			System.out.println("Odpowiedź serwera: " + response);
+		} catch (UnirestException e) {
+			e.printStackTrace();
+		}
+
+
 	}
 
 	private static void findCustomerById() {
