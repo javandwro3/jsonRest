@@ -34,6 +34,13 @@ public class UnirestTest {
 		// PUT - służy do aktualizowania danych, odpowiednik Update z CRUD
 		// DELETE - służy do usuwania, odpowiednik Delete z CRUD
 
+		// ENDPOINTY MOJEGO SERWERA - API
+		// GET: 195.181.209.160:8080/api/v1/customers -> lista wszystkich klientów (JSON)
+		// GET: 195.181.209.160:8080/api/v1/customers/{id} -> dane klienta o podanym id (JSON)
+		// POST: 195.181.209.160:8080/api/v1/customers -> stwórz klienta (w ciele żądania JSON z danymi klienta)
+		// PUT: 195.181.209.160:8080/api/v1/customers/{id} -> zaktualizuj  klienta o podanym id (w ciele żądania JSON z danymi klienta)
+		// DELETE: 195.181.209.160:8080/api/v1/customers/{id} -> usuń  klienta o podanym id
+
 
 		// Zapytanie - odpowiedź = String (Hello World from Jakub)
 		String simpleResponse = Unirest.get("http://195.181.209.160:8080/hi").asString().getBody();
@@ -41,12 +48,12 @@ public class UnirestTest {
 
 
 		// Zapytanie z użyciem Path variable/Path param -> zwraca Stringa (Hello World from Jakub + <PARAMETR>)
-		String responseFromPathVariableQuery = Unirest.get("http://195.181.209.160:8080/helloPathParam/Adam").asString().getBody();
+		String responseFromPathVariableQuery = Unirest.get("http://195.181.209.160:8080/helloPathParam/56789045678").asString().getBody();
 		System.out.println(responseFromPathVariableQuery);
 
 
 		// Zapytanie z użyciem Request param -> zwraca Stringa (Hello World from Jakub + <PARAMETR_NAME>)
-		String name = "ABC";
+		String name = "ABCDEFG";
 		String responseFromRequestParamQuery = Unirest.get("http://195.181.209.160:8080/helloRequestParam?name=" + name).asString().getBody();
 		System.out.println(responseFromRequestParamQuery);
 
