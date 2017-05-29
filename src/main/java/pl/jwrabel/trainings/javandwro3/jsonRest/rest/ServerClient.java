@@ -29,11 +29,18 @@ public class ServerClient {
 			switch (operationString) {
 				case "0":
 					System.exit(0);
+				case "1":
+					printAllCustomers();
+					break;
 				default:
 					System.out.println("Niepoprawny kod operacji");
 
 			}
 		}
+	}
+
+	private static void printAllCustomers() {
+
 	}
 
 	private static void setupUnirest() {
