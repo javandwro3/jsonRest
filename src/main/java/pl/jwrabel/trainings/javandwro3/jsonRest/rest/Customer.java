@@ -12,13 +12,7 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer{" +
-				"firstName='" + firstName + '\'' +
-				", lastName='" + lastName + '\'' +
-				", birthYear='" + birthYear + '\'' +
-				", height=" + height +
-				", id='" + id + '\'' +
-				'}';
+		return id + ": " + lastName + ", " + firstName + ", " + birthYear + "," + height;
 	}
 
 	public String getFirstName() {

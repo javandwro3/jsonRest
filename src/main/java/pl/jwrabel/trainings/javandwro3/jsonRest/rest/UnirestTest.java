@@ -19,7 +19,7 @@ import java.util.UUID;
  * Created by jakubwrabel on 23.03.2017.
  */
 public class UnirestTest {
-	public static void main(String[] args) throws UnirestException, IOException {
+	public static void main(String[] args) throws IOException, UnirestException {
 		// CRUD -> określenie funkcjonalności Create, Retrieve, Update, Delete
 
 		// 2 sposoby przekazywania parametrów
@@ -44,8 +44,16 @@ public class UnirestTest {
 
 
 		// Zapytanie - odpowiedź = String (Hello World from Jakub)
-		String simpleResponse = Unirest.get("http://195.181.209.160:8080/hi").asString().getBody();
+		String simpleResponse = null;
+		simpleResponse = Unirest.get("http://195.181.209.160:8080/hi").asString().getBody();
 		System.out.println(simpleResponse);
+
+		// Wyciągnięcie więcej informacji z odpowiedzi
+		HttpResponse<String> stringHttpResponse = Unirest.get("http://195.181.209.160:8080/hisdas").asString();
+		int status = stringHttpResponse.getStatus();
+		if(status != 200){
+			System.err.println("BŁĄD");
+		}
 
 
 		// Zapytanie z użyciem Path variable/Path param -> zwraca Stringa (Hello World from Jakub + <PARAMETR>)
