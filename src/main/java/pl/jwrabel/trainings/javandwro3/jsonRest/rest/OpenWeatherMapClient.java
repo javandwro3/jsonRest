@@ -86,8 +86,8 @@ public class OpenWeatherMapClient {
 					.get("http://api.openweathermap.org/data/2.5/weather?units=metric&q=" + cityName + "&appid=" + apiKey)
 					.asJson()
 					.getBody();
-//			double temp = jsonNode.getObject().optJSONObject("main").getDouble("temp");
-//			return temp;
+			double temp = jsonNode.getObject().optJSONObject("main").getDouble("temp");
+			return temp;
 		} catch (UnirestException e) {
 			e.printStackTrace();
 		}
