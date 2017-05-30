@@ -43,7 +43,7 @@ public class OpenWeatherMapClient {
 		//		// Wyciąganie elementów jsona z użyciem JsonNode -> chodzenie po JSONie bez konieczności mapowania na obiekty
 //		// http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=a1fb2306e8575f67c23fc8f23062f7e1
 		JsonNode weatherJsonObject = Unirest
-				.get("http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=a1fb2306e8575f67c23fc8f23062f7e1")
+				.get("http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=" + apiKey)
 				.asJson().getBody();
 
 		System.out.println("Dane dla współrzędnych lat=35, lon=139");
