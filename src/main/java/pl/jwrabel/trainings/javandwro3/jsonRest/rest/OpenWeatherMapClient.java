@@ -9,7 +9,7 @@ import com.mashape.unirest.http.exceptions.UnirestException;
  */
 public class OpenWeatherMapClient {
 	public static void main(String[] args) throws UnirestException {
-		String apiKey = "a1fb2306e8575f67c23fc8f23062f7e1";
+		String apiKey = "YOUR_API_KEY";
 
 		// Odpytanie o pogodę dla Warszawy
 		String warsawJson = Unirest
