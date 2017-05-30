@@ -46,12 +46,12 @@ public class OpenWeatherMapClient {
 				.get("http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=" + apiKey)
 				.asJson().getBody();
 
-//		System.out.println("Dane dla współrzędnych lat=35, lon=139");
-//		double windSpeed = weatherJsonObject.getObject().optJSONObject("wind").getDouble("speed");
-//		System.out.println("Prędkość wiatru: " + windSpeed);
-//
-//		String description = weatherJsonObject.getObject().optJSONArray("weather").optJSONObject(0).getString("description");
-//		System.out.println("Opis pogody: " + description);
+		System.out.println("Dane dla współrzędnych lat=35, lon=139");
+		double windSpeed = weatherJsonObject.getObject().optJSONObject("wind").getDouble("speed");
+		System.out.println("Prędkość wiatru: " + windSpeed);
+
+		String description = weatherJsonObject.getObject().optJSONArray("weather").optJSONObject(0).getString("description");
+		System.out.println("Opis pogody: " + description);
 
 
 		// SPRAWDZENIE TEMPERATURY W PODANYM MIESCIE
@@ -60,13 +60,13 @@ public class OpenWeatherMapClient {
 		System.out.println("Temp: " + temp);
 
 		// Przejście po całej tablicy obiektów w JSON
-//		JSONArray weatherArray = weatherJsonObject.getObject().optJSONArray("weather");
-//
-//		for (int i = 0; i < weatherArray.length(); i++) {
-//			String description1 = weatherArray.optJSONObject(i).getString("description");
-//			System.out.println(description1);
-//
-//		}
+		JSONArray weatherArray = weatherJsonObject.getObject().optJSONArray("weather");
+
+		for (int i = 0; i < weatherArray.length(); i++) {
+			String description1 = weatherArray.optJSONObject(i).getString("description");
+			System.out.println(description1);
+
+		}
 
 		JsonNode jsonNode = Unirest.get("https://restcountries-v1.p.mashape.com/all")
 				.header("X-Mashape-Key", "NqMphWw04mmshJhkgC1nSywvqGYqp1rxhcKjsnv0r6yJxyODAp")
