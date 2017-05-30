@@ -69,7 +69,7 @@ public class OpenWeatherMapClient {
 		}
 
 		JsonNode jsonNode = Unirest.get("https://restcountries-v1.p.mashape.com/all")
-				.header("X-Mashape-Key", "NqMphWw04mmshJhkgC1nSywvqGYqp1rxhcKjsnv0r6yJxyODAp")
+				.header("X-Mashape-Key", "YOUR_MASHAPE_KEY")
 				.header("Accept", "application/json")
 				.asJson().getBody();
 		JSONArray array = jsonNode.getArray();
