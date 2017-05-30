@@ -68,6 +68,7 @@ public class OpenWeatherMapClient {
 
 		}
 
+		// ODPYTANIE REST COUNTRIES
 		JsonNode jsonNode = Unirest.get("https://restcountries-v1.p.mashape.com/all")
 				.header("X-Mashape-Key", "YOUR_MASHAPE_KEY")
 				.header("Accept", "application/json")
