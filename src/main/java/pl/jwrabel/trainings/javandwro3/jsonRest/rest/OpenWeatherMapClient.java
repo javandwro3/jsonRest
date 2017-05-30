@@ -56,7 +56,7 @@ public class OpenWeatherMapClient {
 
 		// SPRAWDZENIE TEMPERATURY W PODANYM MIESCIE
 		System.out.println("-- SPRAWDZAM TEMPERATURĘ DLA WROCŁAWIA ---");
-		double temp = getTempForCity("Wrocław");
+		double temp = getTempForCity("Kuala Lumpur");
 		System.out.println("Temp: " + temp);
 
 		// Przejście po całej tablicy obiektów w JSON
@@ -77,6 +77,8 @@ public class OpenWeatherMapClient {
 	}
 
 	public static double getTempForCity(String cityName) {
+		cityName = cityName.replace(" ", "%20");
+
 		String apiKey = "YOUR_API_KEY";
 
 		try {
