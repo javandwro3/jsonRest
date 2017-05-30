@@ -141,16 +141,6 @@ public class UnirestTest {
 		int responseStatus = response.getStatus();
 		Headers headers = response.getHeaders();
 
-
-		//		// Wyciąganie elementów jsona z użyciem JsonNode -> chodzenie po JSONie bez konieczności mapowania na obiekty
-//		// http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=a1fb2306e8575f67c23fc8f23062f7e1
-//		JsonNode weatherJson = Unirest.get("http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=a1fb2306e8575f67c23fc8f23062f7e1").asJson().getBody();
-//
-//		double windSpeed = weatherJson.getObject().optJSONObject("wind").getDouble("speed");
-//		System.out.println(windSpeed);
-//
-//		String description = weatherJson.getObject().optJSONArray("weather").optJSONObject(0).getString("description");
-//		System.out.println(description);
 	}
 
 	private static Customer getCustomer(String id) throws UnirestException {

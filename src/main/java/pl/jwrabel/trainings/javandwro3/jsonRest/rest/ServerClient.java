@@ -7,8 +7,22 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.mashape.unirest.http.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.conn.scheme.PlainSocketFactory;
+import org.apache.http.conn.scheme.Scheme;
+import org.apache.http.conn.scheme.SchemeRegistry;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.ssl.SSLContexts;
 
+import javax.net.ssl.SSLContext;
 import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
@@ -20,7 +34,9 @@ public class ServerClient {
 
 	public static final Scanner SCANNER = new Scanner(System.in);
 
-	public static void main(String[] args) throws UnirestException, IOException {
+
+
+	public static void main(String[] args) throws UnirestException, IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
 		setupUnirest();
 
 		while (true) {
@@ -123,7 +139,7 @@ public class ServerClient {
 
 	}
 
-	private static void setupUnirest() {
+	private static void setupUnirest() throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
 		Unirest.setObjectMapper(new ObjectMapper() {
 			private com.fasterxml.jackson.databind.ObjectMapper jacksonObjectMapper
 					= new com.fasterxml.jackson.databind.ObjectMapper();
