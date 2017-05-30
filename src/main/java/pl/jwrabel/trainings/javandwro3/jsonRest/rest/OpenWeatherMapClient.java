@@ -3,6 +3,7 @@ package pl.jwrabel.trainings.javandwro3.jsonRest.rest;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import org.json.JSONArray;
 
 /**
  * Created by jakubwrabel on 30/05/2017.
@@ -51,5 +52,37 @@ public class OpenWeatherMapClient {
 
 		String description = weatherJsonObject.getObject().optJSONArray("weather").optJSONObject(0).getString("description");
 		System.out.println("Opis pogody: " + description);
+
+
+		// SPRAWDZENIE TEMPERATURY W PODANYM MIESCIE
+		System.out.println("-- SPRAWDZAM TEMPERATURĘ DLA WROCŁAWIA ---");
+		double temp = getTempForCity("Wrocław");
+		System.out.println("Temp: " + temp);
+
+		// Przejście po całej tablicy obiektów w JSON
+		JSONArray weatherArray = weatherJsonObject.getObject().optJSONArray("weather");
+
+		for (int i = 0; i < weatherArray.length(); i++) {
+			String description1 = weatherArray.optJSONObject(i).getString("description");
+			System.out.println(description1);
+
+		}
+	}
+
+	public static double getTempForCity(String cityName) {
+		String apiKey = "YOUR_API_KEY";
+
+		try {
+			JsonNode jsonNode = Unirest
+					.get("http://api.openweathermap.org/data/2.5/weather?units=metric&q=" + cityName + "&appid=" + apiKey)
+					.asJson()
+					.getBody();
+			double temp = jsonNode.getObject().optJSONObject("main").getDouble("temp");
+			return temp;
+		} catch (UnirestException e) {
+			e.printStackTrace();
+		}
+
+		return -10000;
 	}
 }
